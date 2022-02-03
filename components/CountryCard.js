@@ -7,7 +7,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region }) => {
 
   return (
     <div
-      className={`flex flex-col m-2   
+      className={`flex flex-col m-6 lg:m-0
       ${
         darkMode == false
           ? "bg-[#2A3642] text-white"
