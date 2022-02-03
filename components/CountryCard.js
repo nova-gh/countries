@@ -7,7 +7,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region }) => {
 
   return (
     <div
-      className={`flex flex-col m-6 lg:m-0
+      className={`flex flex-col m-6 lg:m-0 shadow-lg
       ${
         darkMode == false
           ? "bg-[#2A3642] text-white"
@@ -23,7 +23,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region }) => {
         <div className="pt-4">
           <h2 className="">Population: {pop}</h2>
           <h2 className="">Region: {region}</h2>
-          <h2 className="">Capital: {capital}</h2>
+          {capital === null ? "" : <h2 className="">Capital: {capital}</h2>}
         </div>
       </div>
     </div>
