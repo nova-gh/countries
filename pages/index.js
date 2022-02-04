@@ -28,6 +28,7 @@ export default function Home({ data }) {
   const country = filteredCountries.map((country, i) => (
     <CountryCard
       key={i}
+      id={i}
       flagImg={country.flags.png}
       countryName={country.name.common}
       pop={country.population}
