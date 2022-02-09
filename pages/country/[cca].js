@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ThemeContext } from "../../helper/Context";
 import { BiArrowBack } from "react-icons/bi";
-import TextDetails from "../../components/detailsView/textDetails";
+// import TextDetails from "../../components/detailsView/textDetails";
 const Country = ({ country }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const flagImg = country.flags.png;
