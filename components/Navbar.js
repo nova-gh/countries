@@ -17,7 +17,7 @@ const Navbar = () => {
         <Link href="/" passHref>
           <div className="flex items-center cursor-pointer ">
             <FcGlobe className="text-2xl" />
-            <h1 className="select-none">Countries</h1>
+            <h1 className="ml-1 select-none">Countries</h1>
           </div>
         </Link>
         <div
