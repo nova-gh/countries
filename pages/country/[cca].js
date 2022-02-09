@@ -71,11 +71,11 @@ const Country = ({ country }) => {
               {countryName}
             </h1>
             <div
-              className={`grid grid-cols-1 md:grid-cols-2 md:gap-x-6 lg:mt-10  ${
+              className={`lg:mt-10 flex flex-col md:flex-row lg:space-x-7 xl:space-x-0 ${
                 darkMode == false ? " text-white" : " text-gray-900"
               }`}
             >
-              <div className="mt-8 space-y-2 lg:mt-0">
+              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Population: <span className="font-light">{population}</span>
                 </h1>
@@ -90,7 +90,7 @@ const Country = ({ country }) => {
                 </h1>
               </div>
 
-              <div className="mt-10 space-y-2 lg:mt-0">
+              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Top Level Domain:{" "}
                   <span className="font-light">{topLevelDomain}</span>
@@ -115,22 +115,22 @@ const Country = ({ country }) => {
                   ))}
                 </h1>
               </div>
-              <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
-                <h1 className="font-semibold">Border Countries </h1>
-                <div className="flex items-center space-x-2 lg:ml-2">
-                  {borderCountries?.map((border, i) => (
-                    <h1
-                      key={i}
-                      className={`px-8 py-2 rounded-sm shadow-lg ${
-                        darkMode == false
-                          ? "bg-[#2A3642] text-white"
-                          : "bg-gray-200 text-gray-900"
-                      }`}
-                    >
-                      {border}
-                    </h1>
-                  ))}
-                </div>
+            </div>
+            <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
+              <h1 className="font-semibold">Border Countries </h1>
+              <div className="flex flex-wrap items-center gap-2 lg:ml-2">
+                {borderCountries?.map((border, i) => (
+                  <h1
+                    key={i}
+                    className={`px-8 py-2 rounded-sm shadow-lg ${
+                      darkMode == false
+                        ? "bg-[#2A3642] text-white"
+                        : "bg-gray-200 text-gray-900"
+                    }`}
+                  >
+                    {border}
+                  </h1>
+                ))}
               </div>
             </div>
           </div>
