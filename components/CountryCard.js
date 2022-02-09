@@ -9,26 +9,40 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
   return (
     <Link href={`/country/${cca}`} passHref>
       <div
-        className={`flex flex-col m-6 lg:m-0 shadow-lg cursor-pointer
-      ${
-        darkMode == false
-          ? "bg-[#2A3642] text-white"
-          : "bg-gray-200 text-gray-900"
-      }
+        // className={`min-w-[320px] mx-auto rounded-md flex flex-col shadow-lg cursor-pointer
+        className={`flex flex-col mt-6 mx-10 sm:mx-6  lg:m-0 shadow-lg cursor-pointer rounded-md
+        ${
+          darkMode == false
+            ? "bg-[#2A3642] text-white"
+            : "bg-gray-200 text-gray-900"
+        }
     `}
       >
-        {/* <div className="h-40 ">
-          <img src={flagImg} className="object-cover w-full h-full " />
-        </div> */}
-        <div className="relative w-full h-40">
-          <Image src={flagImg} layout="fill" className="" alt={name} />
+        <div className="relative w-full h-40 ">
+          <Image
+            src={flagImg}
+            layout="fill"
+            alt={name}
+            className="rounded-t-md"
+          />
         </div>
         <div className="flex flex-col items-start p-4 mt-4 text-sm">
-          <h1 className="font-semibold ">{countryName}</h1>
-          <div className="pt-4">
-            <h2 className="">Population: {pop}</h2>
-            <h2 className="">Region: {region}</h2>
-            {capital === null ? "" : <h2 className="">Capital: {capital}</h2>}
+          <h1 className="text-base font-extrabold">{countryName}</h1>
+          <div className="pt-4 ">
+            <h2 className="font-semibold">
+              Population:
+              <span className="font-light"> {pop}</span>
+            </h2>
+            <h2 className="font-semibold">
+              Region: <span className="font-light"> {region}</span>
+            </h2>
+            {capital === null ? (
+              ""
+            ) : (
+              <h2 className="font-semibold">
+                Capital: <span className="font-light"> {capital}</span>
+              </h2>
+            )}
           </div>
         </div>
       </div>
