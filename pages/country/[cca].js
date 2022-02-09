@@ -27,6 +27,8 @@ const Country = ({ country }) => {
   const borderCountries = country.borders.map(
     (el) => (el = regionNamesInEnglish.of(el.substring(0, 2).toUpperCase()))
   );
+
+  const population = pop.toLocaleString("en-US").toString();
   // router
   const router = useRouter();
 
@@ -46,7 +48,7 @@ const Country = ({ country }) => {
         >
           <BiArrowBack className="mr-2 text-xl" /> Back
         </button>
-        <main className="flex flex-col mt-10 lg:mt-32 lg:flex-row ">
+        <main className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
           <div className="flex-1 ">
             <div className="">
               <Image
@@ -59,18 +61,65 @@ const Country = ({ country }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col flex-1">
-            <TextDetails
-              countryName={countryName}
-              pop={pop}
-              region={region}
-              subRegion={subRegion}
-              capital={capital}
-              topLevelDomain={topLevelDomain}
-              currencyName={currencyName}
-              langs={langs}
-              borderCountries={borderCountries}
-            />
+          <div className="flex flex-col flex-1 w-1/2 ">
+            <h1 className="mt-10 text-xl font-extrabold lg:mt-8">
+              {countryName}
+            </h1>
+            <div
+              className={`grid grid-rows-2  ${
+                darkMode == false ? " text-white" : " text-gray-900"
+              }`}
+            >
+              <div className="mt-8 space-y-2 ">
+                <h1 className="font-semibold">
+                  Population: <span className="font-light">{population}</span>
+                </h1>
+                <h1 className="font-semibold">
+                  Region: <span className="font-light">{region}</span>
+                </h1>
+                <h1 className="font-semibold">
+                  Sub Region: <span className="font-light">{subRegion}</span>
+                </h1>
+                <h1 className="font-semibold">
+                  Capital: <span className="font-light">{capital}</span>
+                </h1>
+              </div>
+
+              <div className="mt-10 space-y-2 ">
+                <h1 className="font-semibold">
+                  Top Level Domain:{" "}
+                  <span className="font-light">{topLevelDomain}</span>
+                </h1>
+                <h1 className="font-semibold">
+                  Currency: <span className="font-light"> {currencyName}</span>
+                </h1>
+                <h1 className="font-semibold">
+                  Languages:
+                  {langs.map((lang, i) => (
+                    <span key={i} className="ml-1 font-light">
+                      {lang}
+                    </span>
+                  ))}
+                </h1>
+              </div>
+              {/* <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
+                <h1 className="font-semibold">Border Countries </h1>
+                <div className="flex items-center space-x-2 lg:ml-2">
+                  {borderCountries.map((border, i) => (
+                    <h1
+                      key={i}
+                      className={`px-8 py-2 rounded-sm shadow-lg ${
+                        darkMode == false
+                          ? "bg-[#2A3642] text-white"
+                          : "bg-gray-200 text-gray-900"
+                      }`}
+                    >
+                      {border}
+                    </h1>
+                  ))}
+                </div>
+              </div> */}
+            </div>
           </div>
         </main>
       </div>
