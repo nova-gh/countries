@@ -7,7 +7,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   return (
-    <Link href={`/country/${cca}`} passHref>
+    <Link href={`/country/${cca.toLowerCase()}`} passHref>
       <div
         // className={`min-w-[320px] mx-auto rounded-md flex flex-col shadow-lg cursor-pointer
         className={`flex flex-col mt-6 mx-10 sm:mx-6  lg:m-0 shadow-lg cursor-pointer rounded-md
@@ -22,7 +22,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
           <Image
             src={flagImg}
             layout="fill"
-            alt={name}
+            alt={countryName}
             className="rounded-t-md"
           />
         </div>
