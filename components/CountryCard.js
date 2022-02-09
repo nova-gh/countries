@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
-
+  const population = pop.toLocaleString("en-US").toString();
   return (
     <Link href={`/country/${cca.toLowerCase()}`} passHref>
       <div
@@ -31,7 +31,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
           <div className="pt-4 ">
             <h2 className="font-semibold">
               Population:
-              <span className="font-light"> {pop}</span>
+              <span className="font-light"> {population}</span>
             </h2>
             <h2 className="font-semibold">
               Region: <span className="font-light"> {region}</span>
