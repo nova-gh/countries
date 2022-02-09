@@ -12,8 +12,20 @@ const TextDetails = ({
   borderCountries,
 }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
-
   const population = pop.toLocaleString("en-US").toString();
+  {
+    /* <TextDetails
+  countryName={countryName}
+  pop={pop}
+  region={region}
+  subRegion={subRegion}
+  capital={capital}
+  topLevelDomain={topLevelDomain}
+  currencyName={currencyName}
+  langs={langs}
+  borderCountries={borderCountries}
+/> */
+  }
   return (
     <>
       <div
@@ -42,20 +54,19 @@ const TextDetails = ({
           Top Level Domain: <span className="font-light">{topLevelDomain}</span>
         </h1>
         <h1 className="font-semibold">
-          Currency:
-          <span className="font-light">{currencyName}</span>
+          Currency: <span className="font-light"> {currencyName}</span>
         </h1>
         <h1 className="font-semibold">
           Languages:
           {langs.map((lang, i) => (
-            <span key={i} className="font-light">
+            <span key={i} className="ml-1 font-light">
               {lang}
             </span>
           ))}
         </h1>
       </div>
       <div className="mt-8 ">
-        <h1 className="">Border Countries </h1>
+        <h1 className="font-semibold">Border Countries </h1>
         <div className="flex space-x-2">
           {borderCountries.map((border, i) => (
             <h1
