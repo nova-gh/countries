@@ -15,22 +15,27 @@ const Country = ({ country }) => {
   const subRegion = country.subregion;
   const capital = country.capital;
   const topLevelDomain = country.tld;
-  const currencyObj = country.currencies;
-  const currencyName = currencyObj[Object.keys(currencyObj)[0]].name;
-  const currencySymbol = currencyObj[Object.keys(currencyObj)[0]].symbol;
-  const langObj = country.languages;
-  const langs = Object.values(langObj);
+  const currencyObj = country?.currencies;
+  const currencyName =
+    currencyObj !== undefined
+      ? currencyObj?.[Object.keys(currencyObj)[0]].name
+      : undefined;
+  // const currencySymbol = currencyObj?.[Object.keys(currencyObj)[0]].symbol;
+  const langObj = country?.languages;
+  const langs = langObj !== undefined ? Object.values(langObj) : undefined;
   // Using Intl API to convert country code to full name
   const regionNamesInEnglish = new Intl.DisplayNames(["en"], {
     type: "region",
   });
-  const borderCountries = country.borders.map(
+  const borderCountries = country.borders?.map(
     (el) => (el = regionNamesInEnglish.of(el.substring(0, 2).toUpperCase()))
   );
 
   const population = pop.toLocaleString("en-US").toString();
   // router
+  // console.log(currencyName === undefined || null ? "true" : "false");
   const router = useRouter();
+  console.log(borderCountries);
 
   return (
     <div>
@@ -61,16 +66,16 @@ const Country = ({ country }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col flex-1 w-1/2 ">
+          <div className="flex flex-col flex-1 ">
             <h1 className="mt-10 text-xl font-extrabold lg:mt-8">
               {countryName}
             </h1>
             <div
-              className={`grid grid-rows-2  ${
+              className={`grid grid-cols-1 md:grid-cols-2 md:gap-x-6 lg:mt-10  ${
                 darkMode == false ? " text-white" : " text-gray-900"
               }`}
             >
-              <div className="mt-8 space-y-2 ">
+              <div className="mt-8 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Population: <span className="font-light">{population}</span>
                 </h1>
@@ -85,27 +90,35 @@ const Country = ({ country }) => {
                 </h1>
               </div>
 
-              <div className="mt-10 space-y-2 ">
+              <div className="mt-10 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Top Level Domain:{" "}
                   <span className="font-light">{topLevelDomain}</span>
                 </h1>
-                <h1 className="font-semibold">
+                <h1
+                  className={`font-semibold ${
+                    currencyName === undefined || null ? "hidden" : "block"
+                  }`}
+                >
                   Currency: <span className="font-light"> {currencyName}</span>
                 </h1>
-                <h1 className="font-semibold">
+                <h1
+                  className={`font-semibold ${
+                    langs === undefined || null ? "hidden" : "block"
+                  }`}
+                >
                   Languages:
-                  {langs.map((lang, i) => (
+                  {langs?.map((lang, i) => (
                     <span key={i} className="ml-1 font-light">
                       {lang}
                     </span>
                   ))}
                 </h1>
               </div>
-              {/* <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
+              <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
                 <h1 className="font-semibold">Border Countries </h1>
                 <div className="flex items-center space-x-2 lg:ml-2">
-                  {borderCountries.map((border, i) => (
+                  {borderCountries?.map((border, i) => (
                     <h1
                       key={i}
                       className={`px-8 py-2 rounded-sm shadow-lg ${
@@ -118,7 +131,7 @@ const Country = ({ country }) => {
                     </h1>
                   ))}
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </main>
