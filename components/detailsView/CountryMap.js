@@ -5,7 +5,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 const CountryMap = ({ latLong, countryName }) => {
   const icon = L.icon({ iconUrl: "/mapAssets/marker-icon.png" });
 
-  const [zoom, setZoom] = useState(7);
+  const [zoom, setZoom] = useState(5);
   const position = latLong;
   useEffect(() => {}, [zoom]);
   return (
