@@ -50,8 +50,8 @@ const Country = ({ country }) => {
           <BiArrowBack className="mr-2 text-xl" /> Back
         </button>
         <main className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
-          <div className="flex-1 lg:self-stretch">
-            <div className="max-w-sm mx-auto lg:mx-0 lg:max-w-4xl">
+          <div className="flex-1 lg:self-center">
+            <div className="max-w-md mx-auto lg:mx-0 lg:max-w-full">
               <Image
                 src={flagImg}
                 // layout="fill"
