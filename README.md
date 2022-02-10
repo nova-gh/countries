@@ -17,9 +17,7 @@ Learn about the countries around the world.
 
 **Front-End:** Next.js, TailwindCSS
 
-**Back-End:** Redis
-
-## API Reference
+## REST API Reference
 
 #### Get all countries
 
@@ -30,7 +28,7 @@ Learn about the countries around the world.
 #### Get a signle country
 
 ```http
-  GET https://restcountries.com/v3.1/alpha/${cca2}
+  GET https://restcountries.com/v3.1/alpha/{cca2}
 ```
 
 | Parameter | Type     | Description                 |
