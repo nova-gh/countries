@@ -41,6 +41,7 @@ Learn about the countries around the world.
 
 ## Documentation
 
+[Countries API](https://restcountries.com/)
 [Next.js](https://nextjs.org)
 
 [TailwindCSS](https://tailwindcss.com)
