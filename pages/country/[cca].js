@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ThemeContext } from "../../helper/Context";
 import { BiArrowBack } from "react-icons/bi";
+import alphaCode from "i18n-iso-countries";
+alphaCode.registerLocale(require("i18n-iso-countries/langs/en.json"));
 // import TextDetails from "../../components/detailsView/textDetails";
 const Country = ({ country }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
@@ -23,19 +25,13 @@ const Country = ({ country }) => {
   // const currencySymbol = currencyObj?.[Object.keys(currencyObj)[0]].symbol;
   const langObj = country?.languages;
   const langs = langObj !== undefined ? Object.values(langObj) : undefined;
-  // Using Intl API to convert country code to full name
-  const regionNamesInEnglish = new Intl.DisplayNames(["en"], {
-    type: "region",
-  });
   const borderCountries = country.borders?.map(
-    (el) => (el = regionNamesInEnglish.of(el.substring(0, 2).toUpperCase()))
+    (el) => (el = alphaCode.getName(`${el}`, "en"))
   );
 
   const population = pop.toLocaleString("en-US").toString();
-  // router
-  // console.log(currencyName === undefined || null ? "true" : "false");
   const router = useRouter();
-  console.log(borderCountries);
+  console.log(subRegion);
 
   return (
     <div>
@@ -54,15 +50,15 @@ const Country = ({ country }) => {
           <BiArrowBack className="mr-2 text-xl" /> Back
         </button>
         <main className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
-          <div className="flex-1 ">
-            <div className="">
+          <div className="flex-1 lg:self-stretch">
+            <div className="max-w-sm mx-auto lg:mx-0 lg:max-w-4xl">
               <Image
                 src={flagImg}
                 // layout="fill"
                 alt={countryName}
                 layout="responsive"
                 width={700}
-                height={475}
+                height={400}
               />
             </div>
           </div>
@@ -71,27 +67,35 @@ const Country = ({ country }) => {
               {countryName}
             </h1>
             <div
-              className={`lg:mt-10 flex flex-col md:flex-row lg:space-x-7 xl:space-x-0 ${
+              className={`justify-between lg:mt-10 flex flex-col md:flex-row xl:space-x-0 ${
                 darkMode == false ? " text-white" : " text-gray-900"
               }`}
             >
-              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
+              <div className="mt-8 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Population: <span className="font-light">{population}</span>
                 </h1>
                 <h1 className="font-semibold">
                   Region: <span className="font-light">{region}</span>
                 </h1>
-                <h1 className="font-semibold">
+                <h1
+                  className={`font-semibold ${
+                    subRegion === undefined && "hidden"
+                  }`}
+                >
                   Sub Region: <span className="font-light">{subRegion}</span>
                 </h1>
-                <h1 className="font-semibold">
+                <h1
+                  className={`font-semibold ${
+                    capital === undefined && "hidden"
+                  } `}
+                >
                   Capital: <span className="font-light">{capital}</span>
                 </h1>
               </div>
 
-              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
-                <h1 className="font-semibold">
+              <div className="mt-8 space-y-2 md:mr-14 lg:mr-0 lg:mt-0">
+                <h1 className="font-semibold ">
                   Top Level Domain:{" "}
                   <span className="font-light">{topLevelDomain}</span>
                 </h1>
@@ -116,13 +120,19 @@ const Country = ({ country }) => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col w-full col-span-3 mt-8 lg:items-center lg:flex-row">
-              <h1 className="font-semibold">Border Countries </h1>
-              <div className="flex flex-wrap items-center gap-2 lg:ml-2">
+            <div
+              className={`${
+                borderCountries === undefined || null ? "hidden" : "flex"
+              } flex flex-col w-full  mt-8 lg:flex-row`}
+            >
+              <h1 className="font-semibold md:self-center min-w-max">
+                Border Countries{" "}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2 mt-2 lg:ml-2 lg:mt-0 lg:items-center">
                 {borderCountries?.map((border, i) => (
                   <h1
                     key={i}
-                    className={`px-8 py-2 rounded-sm shadow-lg ${
+                    className={`px-4 py-2 rounded-sm shadow-lg ${
                       darkMode == false
                         ? "bg-[#2A3642] text-white"
                         : "bg-gray-200 text-gray-900"
@@ -135,6 +145,7 @@ const Country = ({ country }) => {
             </div>
           </div>
         </main>
+        {/* <div className="flex">test</div> */}
       </div>
     </div>
   );
