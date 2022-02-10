@@ -95,7 +95,7 @@ export default function Home({ data }) {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-8 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+        <section className="grid grid-cols-1 gap-8 mt-4 animate-slideRight sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
           {data.length > 0 ? country : <h1>Loading</h1>}
         </section>
       </main>
