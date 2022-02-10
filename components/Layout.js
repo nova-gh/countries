@@ -9,8 +9,8 @@ const Layout = ({ children }) => {
       <div
         className={`min-h-screen min-w-full ${
           darkMode == false
-            ? "text-white bg-[#1F2C35]"
-            : "text-gray-900 bg-white"
+            ? "text-white bg-[#1F2C35] ease-in-out duration-1000"
+            : "text-gray-900 bg-white ease-in-out duration-1000"
         }`}
       >
         <Head>
