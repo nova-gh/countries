@@ -6,3 +6,8 @@
   font-family: "Nunito Sans", sans-serif;
   font-family: "Raleway", sans-serif;
 }
+
+.leaflet-container {
+  width: 100wh;
+  height: 40vh;
+}
