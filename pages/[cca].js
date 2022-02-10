@@ -1,12 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { ThemeContext } from "../helper/Context";
 import { BiArrowBack } from "react-icons/bi";
 import alphaCode from "i18n-iso-countries";
 alphaCode.registerLocale(require("i18n-iso-countries/langs/en.json"));
+
 // import TextDetails from "../../components/detailsView/textDetails";
+const CountryMap = dynamic(
+  () => import("../components/detailsView/CountryMap"),
+  { ssr: false }
+);
 const Country = ({ country }) => {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
   const flagImg = country.flags.png;
@@ -18,6 +24,7 @@ const Country = ({ country }) => {
   const capital = country.capital;
   const topLevelDomain = country.tld;
   const currencyObj = country?.currencies;
+  const latLong = country.latlng;
   const currencyName =
     currencyObj !== undefined
       ? currencyObj?.[Object.keys(currencyObj)[0]].name
@@ -31,7 +38,7 @@ const Country = ({ country }) => {
 
   const population = pop.toLocaleString("en-US").toString();
   const router = useRouter();
-  console.log(subRegion);
+  console.log(alphaCode.getName(`UNK`, "en"));
 
   return (
     <div>
@@ -56,6 +63,7 @@ const Country = ({ country }) => {
                 src={flagImg}
                 // layout="fill"
                 alt={countryName}
+                className="rounded-xl"
                 layout="responsive"
                 width={700}
                 height={400}
@@ -129,24 +137,28 @@ const Country = ({ country }) => {
                 Border Countries{" "}
               </h1>
               <div className="flex flex-wrap items-center gap-2 mt-2 lg:ml-2 lg:mt-0 lg:items-center">
-                {borderCountries?.map((border, i) => (
-                  <h1
-                    key={i}
-                    className={`px-4 py-2 rounded-sm shadow-lg ${
-                      darkMode == false
-                        ? "bg-[#2A3642] text-white"
-                        : "bg-gray-200 text-gray-900"
-                    }`}
-                  >
-                    {border}
-                  </h1>
-                ))}
+                {borderCountries?.map((border, i) =>
+                  border !== undefined || null ? (
+                    <h1
+                      key={i}
+                      className={`px-4 py-2 rounded-sm shadow-lg ${
+                        darkMode == false
+                          ? "bg-[#2A3642] text-white"
+                          : "bg-gray-200 text-gray-900"
+                      }`}
+                    >
+                      {border === undefined || null ? " " : border}
+                    </h1>
+                  ) : null
+                )}
               </div>
             </div>
           </div>
         </section>
-        <section className="mt-10">
-          <div className="flex w-full bg-red-300">test</div>
+        <section className="container mt-10">
+          <div className="bg-red-300 rounded-2xl">
+            <CountryMap latLong={latLong} countryName={countryName} />
+          </div>
         </section>
       </div>
     </div>
