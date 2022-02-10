@@ -67,7 +67,7 @@ export default function Home({ data }) {
               onChange={(e) => {
                 setSelectRegion(e.target.value);
               }}
-              className={`w-full md:text-center appearance-none focus:outline-none ${
+              className={`w-full ml-2 md:ml-0 md:text-center appearance-none focus:outline-none ${
                 darkMode == false
                   ? "bg-[#2A3642] text-white"
                   : "bg-gray-200 text-gray-900"
