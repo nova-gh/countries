@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { ThemeContext } from "../../helper/Context";
+import { ThemeContext } from "../helper/Context";
 import { BiArrowBack } from "react-icons/bi";
 import alphaCode from "i18n-iso-countries";
 alphaCode.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -49,7 +49,7 @@ const Country = ({ country }) => {
         >
           <BiArrowBack className="mr-2 text-xl" /> Back
         </button>
-        <main className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
+        <section className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
           <div className="flex-1 lg:self-center">
             <div className="max-w-md mx-auto lg:mx-0 lg:max-w-full">
               <Image
@@ -144,8 +144,10 @@ const Country = ({ country }) => {
               </div>
             </div>
           </div>
-        </main>
-        {/* <div className="flex">test</div> */}
+        </section>
+        <section className="mt-10">
+          <div className="flex w-full bg-red-300">test</div>
+        </section>
       </div>
     </div>
   );
