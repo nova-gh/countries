@@ -57,7 +57,7 @@ const Country = ({ country }) => {
           <BiArrowBack className="mr-2 text-xl" /> Back
         </button>
         <section className="flex flex-col mt-10 lg:space-x-10 lg:mt-32 lg:flex-row ">
-          <div className="flex-1 lg:self-center">
+          <div className="flex-1 lg:self-center animate-scaleInCenter">
             <div className="max-w-md mx-auto lg:mx-0 lg:max-w-full">
               <Image
                 src={flagImg}
@@ -70,8 +70,8 @@ const Country = ({ country }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col flex-1 ">
-            <h1 className="mt-10 text-xl font-extrabold lg:mt-8">
+          <div className="flex flex-col flex-1 animate-slideLeft ">
+            <h1 className="mt-10 text-xl font-extrabold lg:mt-8 ">
               {countryName}
             </h1>
             <div
@@ -155,7 +155,7 @@ const Country = ({ country }) => {
             </div>
           </div>
         </section>
-        <section className="container mt-10">
+        <section className="container mt-10 ">
           <div className="bg-red-300 rounded-2xl">
             <CountryMap latLong={latLong} countryName={countryName} />
           </div>
