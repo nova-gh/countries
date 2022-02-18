@@ -29,10 +29,6 @@ const Country = ({ country }) => {
     currencyObj !== undefined
       ? Object.values(currencyObj).map((obj, i) => obj.name)
       : null;
-  // const currencyName =
-  //   currencyObj !== undefined
-  //     ? currencyObj?.[Object.keys(currencyObj)[0]].name
-  //     : undefined;
   const langObj = country?.languages;
   const langs = langObj !== undefined ? Object.values(langObj) : null;
   const borderCountries = country.borders?.map(
@@ -41,9 +37,6 @@ const Country = ({ country }) => {
 
   const population = pop.toLocaleString("en-US").toString();
   const router = useRouter();
-
-  // console.log(Object.values(currencyObj).map((obj, i) => obj.name));
-  console.log(currencyNames);
   return (
     <div>
       <Head>
