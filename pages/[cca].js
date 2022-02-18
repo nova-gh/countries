@@ -23,23 +23,27 @@ const Country = ({ country }) => {
   const subRegion = country.subregion;
   const capital = country.capital;
   const topLevelDomain = country.tld;
-  const currencyObj = country?.currencies;
   const latLong = country.latlng;
-  const currencyName =
+  const currencyObj = country?.currencies;
+  const currencyNames =
     currencyObj !== undefined
-      ? currencyObj?.[Object.keys(currencyObj)[0]].name
-      : undefined;
-  // const currencySymbol = currencyObj?.[Object.keys(currencyObj)[0]].symbol;
+      ? Object.values(currencyObj).map((obj, i) => obj.name)
+      : null;
+  // const currencyName =
+  //   currencyObj !== undefined
+  //     ? currencyObj?.[Object.keys(currencyObj)[0]].name
+  //     : undefined;
   const langObj = country?.languages;
-  const langs = langObj !== undefined ? Object.values(langObj) : undefined;
+  const langs = langObj !== undefined ? Object.values(langObj) : null;
   const borderCountries = country.borders?.map(
     (el) => (el = alphaCode.getName(`${el}`, "en"))
   );
 
   const population = pop.toLocaleString("en-US").toString();
   const router = useRouter();
-  console.log(alphaCode.getName(`UNK`, "en"));
 
+  // console.log(Object.values(currencyObj).map((obj, i) => obj.name));
+  console.log(currencyNames);
   return (
     <div>
       <Head>
@@ -75,11 +79,11 @@ const Country = ({ country }) => {
               {countryName}
             </h1>
             <div
-              className={`justify-between lg:mt-10 flex flex-col md:flex-row xl:space-x-0 ${
+              className={`justify-evenly lg:mt-10 flex flex-col md:flex-row  xl:space-x-0 ${
                 darkMode == false ? " text-white" : " text-gray-900"
               }`}
             >
-              <div className="mt-8 space-y-2 lg:mt-0">
+              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
                 <h1 className="font-semibold">
                   Population: <span className="font-light">{population}</span>
                 </h1>
@@ -102,27 +106,34 @@ const Country = ({ country }) => {
                 </h1>
               </div>
 
-              <div className="mt-8 space-y-2 md:mr-14 lg:mr-0 lg:mt-0">
+              <div className="w-1/2 mt-8 space-y-2 md:mr-14 lg:mr-0 lg:mt-0">
                 <h1 className="font-semibold ">
                   Top Level Domain:{" "}
                   <span className="font-light">{topLevelDomain}</span>
                 </h1>
                 <h1
                   className={`font-semibold ${
-                    currencyName === undefined || null ? "hidden" : "block"
+                    currencyNames === undefined || null ? "hidden" : "block"
                   }`}
                 >
-                  Currency: <span className="font-light"> {currencyName}</span>
+                  Currency:
+                  {currencyNames?.map((currency, i) => (
+                    <span key={i} className="ml-1 font-light">
+                      {i < currencyNames.length - 1 ? `${currency},` : currency}
+                    </span>
+                  ))}
                 </h1>
+
                 <h1
-                  className={`font-semibold ${
+                  className={`font-semibold flex flex-wrap ${
                     langs === undefined || null ? "hidden" : "block"
                   }`}
                 >
                   Languages:
                   {langs?.map((lang, i) => (
                     <span key={i} className="ml-1 font-light">
-                      {lang}
+                      {/* {lang} */}
+                      {i < langs.length - 1 ? `${lang},` : lang}
                     </span>
                   ))}
                 </h1>
