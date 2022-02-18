@@ -79,11 +79,11 @@ const Country = ({ country }) => {
               {countryName}
             </h1>
             <div
-              className={`justify-evenly lg:mt-10 flex flex-col md:flex-row  xl:space-x-0 ${
+              className={`justify-between lg:mt-10 flex flex-col md:flex-row lg:space-x-8 xl:space-x-0 ${
                 darkMode == false ? " text-white" : " text-gray-900"
               }`}
             >
-              <div className="w-1/2 mt-8 space-y-2 lg:mt-0">
+              <div className="mt-8 space-y-2 md:w-1/2 lg:mt-0">
                 <h1 className="font-semibold">
                   Population: <span className="font-light">{population}</span>
                 </h1>
@@ -106,7 +106,7 @@ const Country = ({ country }) => {
                 </h1>
               </div>
 
-              <div className="w-1/2 mt-8 space-y-2 md:mr-14 lg:mr-0 lg:mt-0">
+              <div className="mt-8 space-y-2 md:w-1/2 md:mr-14 lg:mr-0 lg:mt-0">
                 <h1 className="font-semibold ">
                   Top Level Domain:{" "}
                   <span className="font-light">{topLevelDomain}</span>
@@ -119,7 +119,11 @@ const Country = ({ country }) => {
                   Currency:
                   {currencyNames?.map((currency, i) => (
                     <span key={i} className="ml-1 font-light">
-                      {i < currencyNames.length - 1 ? `${currency},` : currency}
+                      {i < currencyNames.length - 1
+                        ? `${
+                            currency.charAt(0).toUpperCase() + currency.slice(1)
+                          },`
+                        : currency.charAt(0).toUpperCase() + currency.slice(1)}
                     </span>
                   ))}
                 </h1>
@@ -144,7 +148,7 @@ const Country = ({ country }) => {
                 borderCountries === undefined || null ? "hidden" : "flex"
               } flex flex-col w-full  mt-8 lg:flex-row`}
             >
-              <h1 className="font-semibold md:self-center min-w-max">
+              <h1 className="font-semibold lg:self-center min-w-max">
                 Border Countries{" "}
               </h1>
               <div className="flex flex-wrap items-center gap-2 mt-2 lg:ml-2 lg:mt-0 lg:items-center">
