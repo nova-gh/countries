@@ -27,7 +27,7 @@ const CountryCard = ({ flagImg, countryName, pop, capital, region, cca }) => {
               className="rounded-t-md"
             />
           </div>
-          <div className="flex flex-col items-start p-4 mt-4 text-sm">
+          <div className="flex flex-col items-start h-40 p-4 mt-4 text-sm ">
             <h1 className="text-base font-extrabold">{countryName}</h1>
             <div className="pt-4 ">
               <h2 className="font-semibold">
